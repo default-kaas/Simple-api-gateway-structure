@@ -1,0 +1,28 @@
+{
+  "Models": [
+    {
+      "UserId": "8458f551-886a-47a6-8d7a-4799e4c3e4a0",
+      "CompanyId": "7e65a922-5ac6-4128-a82b-c2574d3453af",
+      "CompanyName": "Place holder company",
+      "UserName": "Username1",
+      "Permissions": [ "1", "2" ],
+      "Password": "test123"
+    },
+    {
+      "UserId": "f51d8911-9fe8-4519-926c-896bcb1204c3",
+      "CompanyId": "8f3b7fc3-ce2d-49f5-adf1-76b39d3d9de5",
+      "CompanyName": "Place holder company",
+      "UserName": "Username2",
+      "Permissions": [ "3" ],
+      "Password": "test123"
+    },
+    {
+      "UserId": "74ece792-354b-45c5-84b6-e1e7e900d11c",
+      "CompanyId": "2d815d90-4d37-4a8e-ba21-66d622c22b44",
+      "CompanyName": "Place holder company",
+      "UserName": "Username3",
+      "Permissions": [ "1", "2", "3" ],
+      "Password": "test123"
+    }
+  ]
+}
