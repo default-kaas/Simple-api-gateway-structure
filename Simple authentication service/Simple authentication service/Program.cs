@@ -8,9 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 string GetDatabasePath()
@@ -19,15 +16,14 @@ string GetDatabasePath()
     var path = Environment.GetFolderPath(folder);
     return System.IO.Path.Join(path, "authenticationSqliteDatabase.db");
 }
-// $"Data Source={GetDatabasePath()}"
-// builder.Services.AddDbContext<DataContext>(options => options.UseSqlite($"Data Source={GetDatabasePath()}"));
+// TODO: SQLite implementation $"Data Source={GetDatabasePath()}"
+// TODO: SQLite implementation builder.Services.AddDbContext<DataContext>(options => options.UseSqlite($"Data Source={GetDatabasePath()}"));
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlite(GetDatabasePath()));
 builder.Services.AddScoped<DbContext, DataContext>();
 builder.Services.AddScoped<IRepository, JSONRepository>();
 builder.Services.AddScoped<AuthServiceInterface, AuthService>();
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
