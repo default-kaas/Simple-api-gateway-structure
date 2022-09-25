@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "35868fb3-c5fc-42ec-a91a-32b454d9c334",
+		"name": "Simple example structure",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17447046"
+	},
+	"item": [
+		{
+			"name": "Authenticate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"pm.environment.set(\"jwt\", jsonData.jwt);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"{{userName}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"canRemember\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/authenticate",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Permission route1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/permission-route1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"permission-route1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Permission route2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/permission-route2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"permission-route2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Permission route3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/permission-route3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"permission-route3"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwt}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// pm.sendRequest(\"https://localhost:44319/api/authenticate\", function (err, response) {",
+					"//     const jsonData = response.json();",
+					"//     if(jsonData.jwt != undefined)",
+					"//         pm.environment.set(\"jwt\", jsonData.jwt);",
+					"// });",
+					"",
+					"// Example with a full-fledged request",
+					"",
+					"// console.log(pm.environment.get(\"userName\"))",
+					"// console.log(pm.environment.get(\"password\"))",
+					"",
+					"// const postRequest = {",
+					"//   url: 'https://localhost:44319/api/authenticate',",
+					"//   // method: 'POST',",
+					"// //   header: {",
+					"// //     'accept': 'application/json',",
+					"// //     'Content-Type': 'application/json'",
+					"// //   },",
+					"//   body: {",
+					"//     userName: pm.environment.get(\"userName\"),",
+					"//     password: pm.environment.get(\"password\"),",
+					"//     canRemember: false",
+					"//   }",
+					"// };",
+					"// console.log(postRequest);",
+					"",
+					"// pm.sendRequest(postRequest, (error, response) => {",
+					"//     console.log('Request test 1');",
+					"//     console.log(response);",
+					"//     console.log(error ? error : response.json());",
+					"//     const jsonData = response.json();",
+					"//     console.log('Request test 2');",
+					"//     if(jsonData.jwt != undefined)",
+					"//         pm.environment.set(\"jwt\", jsonData.jwt);",
+					"//     console.log('Request test 3');",
+					"// });",
+					"",
+					"// const postRequest = {",
+					"//     url: 'https://localhost:44319/api/authenticate',",
+					"//     method: 'POST',",
+					"//     header: {",
+					"//         'Content-Type': 'application/json',",
+					"//         'Authorization': {}",
+					"//     },",
+					"//     body: {",
+					"//         userName: pm.environment.get(\"userName\"),",
+					"//         password: pm.environment.get(\"password\"),",
+					"//         canRemember: false",
+					"//     }",
+					"// };",
+					"",
+					"// pm.sendRequest(postRequest, (error, response) => {",
+					"//     console.log(error ? error : response.json());",
+					"//     const jsonData = response.json();",
+					"//     if(jsonData.jwt != undefined)",
+					"//         pm.environment.set(\"jwt\", jsonData.jwt);",
+					"// });"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
