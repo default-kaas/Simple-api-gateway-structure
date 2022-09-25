@@ -1,3 +1,6 @@
+# Read the code in VSCode online
+[VSCode](https://github1s.com/default-kaas/Simple-api-gateway-structure/tree/main)
+
 # Installation
 ## .Net 6 SDK
 [SDK location](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
