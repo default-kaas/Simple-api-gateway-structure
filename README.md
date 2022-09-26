@@ -1,3 +1,14 @@
+# Explantation
+This repository includes two .Net 6 projects. 
+
+One project is a simple api gateway which handles the authorisation and authentication.
+
+The second project is a simple authentication service, which includes the following end points:
+1. Authenticate => this endpoint will return a JWT if the correct login credentials are given
+2. Get permission-route1 => If you have the role claim 1 you will recieve a response with => You have permission for route 1
+3. Get permission-route2 => If you have the role claim 2 you will recieve a response with => You have permission for route 2
+4. Get permission-route3 => If you have the role claim 3 you will recieve a response with => You have permission for route 3
+
 # Read the code in VSCode online
 [VSCode](https://github1s.com/default-kaas/Simple-api-gateway-structure/tree/main)
 
