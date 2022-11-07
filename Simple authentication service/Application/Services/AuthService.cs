@@ -32,7 +32,7 @@ namespace Application.Services
                 new Claim("CompanyName", placeHolderUser.CompanyName ?? "")
             };
 
-            foreach (var permission in placeHolderUser.Permissions ?? new List<string>())
+            foreach (var permission in (placeHolderUser.Permissions is null ? "" : placeHolderUser.Permissions).Split(","))
                 claims.Add(new Claim(ClaimTypes.Role, permission));
 
             var tokenDescriptor = new SecurityTokenDescriptor

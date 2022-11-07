@@ -20,9 +20,7 @@ namespace Persistence
                     UserId = Guid.NewGuid(),
                     CompanyName = "Place holder company",
                     UserName = "Username1",
-                    Permissions = new List<string> {
-                        "1","2"
-                    },
+                    Permissions = "1,2",
                     Password = "test123"
                 },
                 new User
@@ -32,9 +30,7 @@ namespace Persistence
                     UserId = Guid.NewGuid(),
                     CompanyName = "Place holder company",
                     UserName = "Username2",
-                    Permissions = new List<string> {
-                        "3"
-                    },
+                    Permissions = "3",
                     Password = "test123"
                 },
                 new User
@@ -44,9 +40,7 @@ namespace Persistence
                     UserId = Guid.NewGuid(),
                     CompanyName = "Place holder company",
                     UserName = "Username3",
-                    Permissions = new List<string> {
-                        "1","2","3"
-                    },
+                    Permissions = "1,2,3",
                     Password = "test123"
                 });
         }
