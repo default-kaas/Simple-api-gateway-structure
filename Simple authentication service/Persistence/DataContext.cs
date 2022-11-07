@@ -3,32 +3,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
-    // https://learn.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli
     public class DataContext : DbContext
     {
-        // TODO: SQLite implementation
-        // { get; set; }    
-        // public string DbPath { get; }
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            // TODO: SQLite implementation
-            //var folder = Environment.SpecialFolder.LocalApplicationData;
-            //var path = Environment.GetFolderPath(folder);
-            //DbPath = System.IO.Path.Join(path, "authenticationSqliteDatabase.db");
+            Database.EnsureCreated();
         }
-        public DbSet<User> Users => Set<User>();
-        // TODO: SQLite implementation
-        // The following configures EF to create a Sqlite database file in the
-        // special "local" folder for your platform.
-
-        // TODO: SQLite implementation
-        //protected override void OnConfiguring(DbContextOptionsBuilder options)
-        //    => options.UseSqlite($"Data Source={DbPath}");
+        public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
+                    Id = Guid.NewGuid(),
                     CompanyId = Guid.NewGuid(),
                     UserId = Guid.NewGuid(),
                     CompanyName = "Place holder company",
@@ -40,6 +27,7 @@ namespace Persistence
                 },
                 new User
                 {
+                    Id = Guid.NewGuid(),
                     CompanyId = Guid.NewGuid(),
                     UserId = Guid.NewGuid(),
                     CompanyName = "Place holder company",
@@ -51,6 +39,7 @@ namespace Persistence
                 },
                 new User
                 {
+                    Id = Guid.NewGuid(),
                     CompanyId = Guid.NewGuid(),
                     UserId = Guid.NewGuid(),
                     CompanyName = "Place holder company",

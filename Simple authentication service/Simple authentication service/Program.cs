@@ -14,14 +14,13 @@ string GetDatabasePath()
 {
     var folder = Environment.SpecialFolder.LocalApplicationData;
     var path = Environment.GetFolderPath(folder);
-    return System.IO.Path.Join(path, "authenticationSqliteDatabase.db");
+    return $"Data Source={System.IO.Path.Join(path, "authenticationSqliteDatabase.db")}";
 }
-// TODO: SQLite implementation $"Data Source={GetDatabasePath()}"
-// TODO: SQLite implementation builder.Services.AddDbContext<DataContext>(options => options.UseSqlite($"Data Source={GetDatabasePath()}"));
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlite(GetDatabasePath()));
 builder.Services.AddScoped<DbContext, DataContext>();
-builder.Services.AddScoped<IRepository, JSONRepository>();
+builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<AuthServiceInterface, AuthService>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
