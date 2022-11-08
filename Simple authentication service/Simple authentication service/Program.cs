@@ -46,8 +46,4 @@ app.MapGet("/api/permission-route2", () => {
     return "You have permission for route 2";
 });
 
-app.MapGet("/api/permission-route3", () => {
-    return "You have permission for route 3";
-});
-
 app.Run();
