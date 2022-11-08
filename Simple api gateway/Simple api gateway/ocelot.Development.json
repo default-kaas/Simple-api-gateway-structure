@@ -18,11 +18,11 @@
       "Priority": 2,
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/permission-route3",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44380
+          "Port": 5005
         }
       ],
       "AuthenticationOptions": {
