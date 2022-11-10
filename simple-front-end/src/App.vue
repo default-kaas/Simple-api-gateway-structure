@@ -8,5 +8,8 @@
       Simple front-end
     </h1>
   </header>
-  <main class="p-2">Simple body</main>
+  <main class="p-2">
+    Simple body
+    <TestAutoImport />
+  </main>
 </template>
