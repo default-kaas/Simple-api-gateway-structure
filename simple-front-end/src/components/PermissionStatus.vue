@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { PermissionStatusEnumerator } from "@/enumerators/permissionStatusEnumerator";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { usePermissionStore } from "@/stores/usePermissionStore";
-import { permissionRequest } from "@/apis/useRequestHandler";
 const props = defineProps({
   permissionStatusName: {
     type: String,
@@ -13,13 +12,19 @@ const props = defineProps({
     required: true,
   },
 });
-const permissionStatusEnumerator = ref(PermissionStatusEnumerator.unknown);
 const permissionStore = usePermissionStore();
+onMounted(() => {
+  permissionStore.AddPermissionUrl(props.permissionStatusApiUrl);
+});
+const permissionStatusEnumerator = ref(PermissionStatusEnumerator.unknown);
 permissionStore.$onAction(async (action) => {
-  if (action.name == "ResetLoading") {
-    permissionStatusEnumerator.value = await permissionRequest(
-      props.permissionStatusApiUrl
-    );
+  if (action.name == "UpdatePermissions") {
+    const permissions = permissionStore.permissionsComputed.value;
+    for (let i = 0; i < permissions.length; i++) {
+      if (props.permissionStatusApiUrl == permissions[i].url) {
+        permissionStatusEnumerator.value = permissions[i].permissionStatus;
+      }
+    }
   }
 });
 </script>

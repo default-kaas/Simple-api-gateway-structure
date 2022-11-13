@@ -17,13 +17,24 @@ export async function authenticationRequest(
   );
   if (result.status == 200) {
     sessionStorage.setItem("jwt", result.data.jwt);
+    await permissionRequests();
   } else {
     sessionStorage.removeItem("jwt");
   }
   permissionStore.ResetLoading();
 }
 
-export async function permissionRequest(
+async function permissionRequests(): Promise<void> {
+  const permissionStore = usePermissionStore();
+  const permissions = permissionStore.permissionsComputed.value;
+  for (let i = 0; i < permissions.length; i++) {
+    const result = await permissionRequest(permissions[i].url.toString());
+    permissions[i].permissionStatus = result;
+  }
+  permissionStore.UpdatePermissions(permissions);
+}
+
+async function permissionRequest(
   url: string
 ): Promise<PermissionStatusEnumerator> {
   let result = 0;
@@ -31,8 +42,8 @@ export async function permissionRequest(
     .get(import.meta.env.VITE_BASE_URL + url, {
       headers: { Authorization: "Bearer " + sessionStorage.getItem("jwt") },
     })
-    .then((res) => {
-      result = res.status;
+    .then((response) => {
+      result = response.status;
     })
     .catch((error: { response: { status: number } }) => {
       result = error.response.status;

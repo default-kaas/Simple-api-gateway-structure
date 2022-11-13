@@ -5,8 +5,11 @@ import { ref } from "vue";
 // const permissionStore = usePermissionStore();
 const userName = ref("");
 const password = ref("");
+const isPressed = ref(false);
 async function Login() {
+  isPressed.value = true;
   await authenticationRequest(userName.value, password.value);
+  isPressed.value = false;
 }
 </script>
 
@@ -38,6 +41,7 @@ async function Login() {
 
             <!-- Submit button -->
             <button
+              :disabled="isPressed"
               @click="Login()"
               type="submit"
               class="inline-block px-7 py-3 bg-custom-vue-green text-white leading-snug uppercase rounded shadow-md hover:bg-custom-vue-gray hover:shadow-lg w-full"
