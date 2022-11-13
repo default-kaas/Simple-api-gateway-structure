@@ -17,4 +17,6 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties ocelot_1development_1json__JsonSchema="https://docs.renovatebot.com/renovate-schema.json" /></VisualStudio></ProjectExtensions>
+
 </Project>

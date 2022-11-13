@@ -7,6 +7,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    TestAutoImport: typeof import('./src/components/TestAutoImport.vue')['default']
+    LoadingCircle: typeof import('./src/components/LoadingCircle.vue')['default']
+    LoginForm: typeof import('./src/components/LoginForm.vue')['default']
+    PermissionStatus: typeof import('./src/components/PermissionStatus.vue')['default']
+    TestAutoImport: typeof import("./src/components/TestAutoImport.vue")["default"]
   }
 }

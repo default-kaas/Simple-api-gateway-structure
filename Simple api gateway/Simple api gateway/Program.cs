@@ -19,7 +19,13 @@ var tokenValidationParameters = new TokenValidationParameters
     ValidateLifetime = true,
     ClockSkew = TimeSpan.Zero
 };
-
+builder.Services.AddCors(setupAction =>
+{
+    setupAction.AddPolicy("AllowOrigin", options => options.WithOrigins("http://localhost:5173")
+                        .AllowAnyHeader()
+                       .AllowAnyMethod()
+                       .AllowCredentials());
+});
 builder.Services.AddSingleton(tokenValidationParameters);
 builder.Services.AddAuthentication(
                     authenticationOptions =>
@@ -71,6 +77,9 @@ builder.Services.AddSwaggerGen(setupAction =>
 builder.Services.AddOcelot();
 
 var app = builder.Build();
+
+// Add Cors config
+app.UseCors("AllowOrigin");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

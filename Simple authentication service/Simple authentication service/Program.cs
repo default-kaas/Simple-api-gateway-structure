@@ -6,8 +6,16 @@ using Persistence.Repositories;
 using Persistence.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors(setupAction =>
+{
+    setupAction.AddPolicy("AllowOrigin", options => options.WithOrigins("http://localhost:5173")
+                        .AllowAnyHeader()
+                       .AllowAnyMethod()
+                       .AllowCredentials());
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 string GetDatabasePath()
@@ -22,6 +30,9 @@ builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<AuthServiceInterface, AuthService>();
 
 var app = builder.Build();
+
+// Add Cors config
+app.UseCors("AllowOrigin");
 
 if (app.Environment.IsDevelopment())
 {
