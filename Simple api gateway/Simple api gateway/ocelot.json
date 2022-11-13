@@ -18,7 +18,7 @@
       "Priority": 2,
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/permission-route3",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
