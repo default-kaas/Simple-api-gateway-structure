@@ -8,15 +8,22 @@ export async function authenticationRequest(
 ): Promise<void> {
   const permissionStore = usePermissionStore();
   permissionStore.SetLoading();
-  const result = await axios.post<{ jwt: string }>(
-    import.meta.env.VITE_BASE_URL + "/api/authenticate",
-    {
-      userName: userName,
-      password: password,
-    }
-  );
+  const result = await axios
+    .post<{ jwt: string | null; status: number }>(
+      import.meta.env.VITE_BASE_URL + "/api/authenticate",
+      {
+        userName: userName,
+        password: password,
+      }
+    )
+    .then((response) => {
+      return { jwt: response.data.jwt, status: response.status };
+    })
+    .catch((error: { response: { status: number } }) => {
+      return { jwt: null, status: error.response.status };
+    });
   if (result.status == 200) {
-    sessionStorage.setItem("jwt", result.data.jwt);
+    sessionStorage.setItem("jwt", result.jwt ?? "");
   } else {
     sessionStorage.removeItem("jwt");
   }
@@ -26,16 +33,15 @@ export async function authenticationRequest(
 export async function permissionRequest(
   url: string
 ): Promise<PermissionStatusEnumerator> {
-  let result = 0;
-  await axios
+  const result = await axios
     .get(import.meta.env.VITE_BASE_URL + url, {
       headers: { Authorization: "Bearer " + sessionStorage.getItem("jwt") },
     })
     .then((res) => {
-      result = res.status;
+      return res.status;
     })
     .catch((error: { response: { status: number } }) => {
-      result = error.response.status;
+      return error.response.status;
     });
   return permissionStatus(result);
 }
