@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { authenticationRequest } from "@/apis/useRequestHandler";
+import { authenticationRequestCall } from "@/apis/useRequestHandler";
 import { ref } from "vue";
 const userName = ref("");
 const password = ref("");
 const isLoading = ref(false);
 async function Login() {
   isLoading.value = true;
-  await authenticationRequest(userName.value, password.value);
+  await authenticationRequestCall({
+    userName: userName.value,
+    password: password.value,
+  });
   isLoading.value = false;
 }
 </script>
