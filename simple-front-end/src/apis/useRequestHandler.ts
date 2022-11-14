@@ -57,6 +57,8 @@ function permissionStatus(status: number): PermissionStatusEnumerator {
       return PermissionStatusEnumerator.unauthorized;
     case 403:
       return PermissionStatusEnumerator.forbidden;
+    case 404:
+      return PermissionStatusEnumerator.notFound;
     default:
       return PermissionStatusEnumerator.unknown;
   }

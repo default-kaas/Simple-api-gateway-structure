@@ -13,6 +13,11 @@ import { PermissionStatusEnumerator } from "@/enumerators/permissionStatusEnumer
       :permissionStatusEnumerator="PermissionStatusEnumerator.ok"
     />
     <PermissionStatusLegendRow
+      :text="'Not found'"
+      :httpText="'http 404'"
+      :permissionStatusEnumerator="PermissionStatusEnumerator.notFound"
+    />
+    <PermissionStatusLegendRow
       :text="'Forbidden'"
       :httpText="'http 403'"
       :permissionStatusEnumerator="PermissionStatusEnumerator.forbidden"
