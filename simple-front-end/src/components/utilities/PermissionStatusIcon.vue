@@ -87,6 +87,53 @@ defineProps({
       />
     </svg>
   </div>
+  <div
+    class="rounded-full bg-blue-500"
+    v-else-if="
+      permissionStatusEnumerator == PermissionStatusEnumerator.badGateway
+    "
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
+      />
+    </svg>
+  </div>
+  <div
+    class="rounded-full bg-purple-500"
+    v-else-if="
+      permissionStatusEnumerator == PermissionStatusEnumerator.serverError
+    "
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"
+      />
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"
+      />
+    </svg>
+  </div>
   <div class="rounded-full bg-gray-300" v-else>
     <svg
       xmlns="http://www.w3.org/2000/svg"

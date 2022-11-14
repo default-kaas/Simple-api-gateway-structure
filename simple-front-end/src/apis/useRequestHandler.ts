@@ -50,16 +50,9 @@ export async function permissionRequest(
 }
 
 function permissionStatus(status: number): PermissionStatusEnumerator {
-  switch (status) {
-    case 200:
-      return PermissionStatusEnumerator.ok;
-    case 401:
-      return PermissionStatusEnumerator.unauthorized;
-    case 403:
-      return PermissionStatusEnumerator.forbidden;
-    case 404:
-      return PermissionStatusEnumerator.notFound;
-    default:
-      return PermissionStatusEnumerator.unknown;
+  if ((<any>Object).values(PermissionStatusEnumerator).includes(status)) {
+    return status;
+  } else {
+    return PermissionStatusEnumerator.unknown;
   }
 }
