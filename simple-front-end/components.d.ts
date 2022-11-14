@@ -15,6 +15,5 @@ declare module '@vue/runtime-core' {
     PermissionStatus: typeof import('./src/components/PermissionStatus.vue')['default']
     PermissionStatusIcon: typeof import('./src/components/utilities/PermissionStatusIcon.vue')['default']
     PermissionStatusLegendRow: typeof import('./src/components/PermissionStatusLegendRow.vue')['default']
-    TestAutoImport: typeof import("./src/components/TestAutoImport.vue")["default"]
   }
 }
