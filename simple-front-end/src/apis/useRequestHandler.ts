@@ -10,7 +10,7 @@ export async function authenticationRequestCall(
   const permissionStore = usePermissionStore();
   permissionStore.SetLoading();
   await additionalLoadingTime();
-  sessionStorage(await authenticationRequest(userCredentials));
+  setSessionStorage(await authenticationRequest(userCredentials));
   permissionStore.ResetLoading();
 }
 
@@ -60,7 +60,7 @@ async function authenticationRequest(
     });
 }
 
-function sessionStorage(result: iAuthenticationResponse) {
+function setSessionStorage(result: iAuthenticationResponse) {
   if (result.status == 200) {
     sessionStorage.setItem("jwt", result.jwt ?? "");
   } else {
