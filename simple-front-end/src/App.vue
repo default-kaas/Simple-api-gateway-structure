@@ -9,10 +9,11 @@
   <main class="p-2">
     <LoginForm />
     <LoadingCircle />
-    <section class="flex flex-col items-center justify-center">
-      <h2 class="font-bold text-lg p-1 border-custom-vue-gray border-b">
-        Simple authentication service
-      </h2>
+    <CenterContentSection>
+      <LegendPermissionStatus />
+    </CenterContentSection>
+    <CenterContentSection>
+      <HeaderTwo>Simple authentication service </HeaderTwo>
       <PermissionStatus
         :permissionStatusName="'Permission for route 1'"
         :permissionStatusApiUrl="'/api/permission-route1'"
@@ -25,15 +26,13 @@
         :permissionStatusName="'Permission for route 3'"
         :permissionStatusApiUrl="'/api/permission-route3'"
       />
-    </section>
-    <section class="flex flex-col items-center justify-center">
-      <h2 class="font-bold text-lg p-1 border-custom-vue-gray border-b">
-        Simple api service
-      </h2>
+    </CenterContentSection>
+    <CenterContentSection>
+      <HeaderTwo>Simple api service </HeaderTwo>
       <PermissionStatus
         :permissionStatusName="'Permission for route 4'"
         :permissionStatusApiUrl="'/api/permission-route4'"
       />
-    </section>
+    </CenterContentSection>
   </main>
 </template>
