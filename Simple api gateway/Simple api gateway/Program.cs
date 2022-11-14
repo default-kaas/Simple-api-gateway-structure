@@ -48,7 +48,7 @@ builder.Services.AddSwaggerGen(setupAction =>
 {
     setupAction.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "AuthenticationService",
+        Title = "Simple API gateway",
         Version = "v1"
     });
     setupAction.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

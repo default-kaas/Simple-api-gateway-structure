@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "35868fb3-c5fc-42ec-a91a-32b454d9c334",
+		"_postman_id": "eaa7c73c-2da5-4f8b-b799-2e3eee4092cf",
 		"name": "Simple example structure",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "17447046"
+		"_exporter_id": "23626666"
 	},
 	"item": [
 		{
@@ -94,6 +94,24 @@
 					"path": [
 						"api",
 						"permission-route3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Permission route4",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/permission-route4",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"permission-route4"
 					]
 				}
 			},

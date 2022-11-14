@@ -3,8 +3,8 @@ import fastify from 'fastify'
 
 const server = fastify()
 
-server.get('/api/permission-route3', async () => {
-    return 'You have permission for route 3'
+server.get('/api/permission-route4', async () => {
+    return 'You have permission for route 4'
 })
 
 server.listen({ port: 5005 }, (err, address) => {

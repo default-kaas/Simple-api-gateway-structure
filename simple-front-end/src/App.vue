@@ -21,14 +21,18 @@
         :permissionStatusName="'Permission for route 2'"
         :permissionStatusApiUrl="'/api/permission-route2'"
       />
+      <PermissionStatus
+        :permissionStatusName="'Permission for route 3'"
+        :permissionStatusApiUrl="'/api/permission-route3'"
+      />
     </section>
     <section class="flex flex-col items-center justify-center">
       <h2 class="font-bold text-lg p-1 border-custom-vue-gray border-b">
         Simple api service
       </h2>
       <PermissionStatus
-        :permissionStatusName="'Permission for route 3'"
-        :permissionStatusApiUrl="'/api/permission-route3'"
+        :permissionStatusName="'Permission for route 4'"
+        :permissionStatusApiUrl="'/api/permission-route4'"
       />
     </section>
   </main>

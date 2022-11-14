@@ -2,7 +2,7 @@
   "Routes": [
     {
       "UpstreamPathTemplate": "/api/authenticate",
-      "Priority": 3,
+      "Priority": 4,
       "UpstreamHttpMethod": [ "POST" ],
       "DownstreamPathTemplate": "/api/authenticate",
       "DownstreamScheme": "https",
@@ -14,15 +14,33 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/api/permission-route3",
-      "Priority": 2,
+      "UpstreamPathTemplate": "/api/permission-route4",
+      "Priority": 3,
       "UpstreamHttpMethod": [ "GET" ],
-      "DownstreamPathTemplate": "/api/permission-route3",
+      "DownstreamPathTemplate": "/api/permission-route4",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 5005
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "CompanyId", "CompanyName", "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier" ]
+      },
+      "RouteClaimsRequirement": { "role": "3" }
+    },
+    {
+      "UpstreamPathTemplate": "/api/permission-route3",
+      "Priority": 2,
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/permission-route3",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44380
         }
       ],
       "AuthenticationOptions": {
