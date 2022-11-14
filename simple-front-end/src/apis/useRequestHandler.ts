@@ -8,6 +8,9 @@ export async function authenticationRequest(
 ): Promise<void> {
   const permissionStore = usePermissionStore();
   permissionStore.SetLoading();
+  //* This added to show the loading animation
+  if (import.meta.env.VITE_SHOWCASE_LOADING_ANIMATION ?? false)
+    await new Promise((resolve) => setTimeout(resolve, 750));
   const result = await axios
     .post<{ jwt: string | null; status: number }>(
       import.meta.env.VITE_BASE_URL + "/api/authenticate",

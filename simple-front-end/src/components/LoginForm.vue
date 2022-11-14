@@ -1,12 +1,13 @@
 <script setup lang="ts">
-// import { usePermissionStore } from "@/stores/usePermissionStore";
 import { authenticationRequest } from "@/apis/useRequestHandler";
 import { ref } from "vue";
-// const permissionStore = usePermissionStore();
 const userName = ref("");
 const password = ref("");
+const isLoading = ref(false);
 async function Login() {
+  isLoading.value = true;
   await authenticationRequest(userName.value, password.value);
+  isLoading.value = false;
 }
 </script>
 
@@ -38,9 +39,10 @@ async function Login() {
 
             <!-- Submit button -->
             <button
+              :disabled="isLoading"
               @click="Login()"
               type="submit"
-              class="inline-block px-7 py-3 bg-custom-vue-green text-white leading-snug uppercase rounded shadow-md hover:bg-custom-vue-gray hover:shadow-lg w-full"
+              class="inline-block px-7 py-3 bg-custom-vue-green text-white leading-snug uppercase rounded shadow-md hover:bg-custom-vue-gray hover:shadow-lg disabled:bg-gray-300 w-full"
             >
               Sign in
             </button>

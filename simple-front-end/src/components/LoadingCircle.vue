@@ -12,6 +12,7 @@ const permissionStore = usePermissionStore();
       stroke-width="1.5"
       stroke="black"
       class="w-10 h-10"
+      :class="permissionStore.isLoading.value ? 'animate-spin' : ''"
     >
       <path
         stroke-linecap="round"
