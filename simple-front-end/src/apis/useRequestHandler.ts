@@ -55,9 +55,18 @@ async function authenticationRequest(
     .then((response) => {
       return { jwt: response.data.jwt, status: response.status };
     })
-    .catch((error: { response: { status: number } }) => {
-      return { jwt: null, status: error.response.status };
-    });
+    .catch(
+      (error: {
+        response: { status: number } | null;
+        request: { status: number };
+      }) => {
+        if (error.response == null) {
+          return { jwt: null, status: PermissionStatusEnumerator.unknown };
+        } else {
+          return { jwt: null, status: error.response.status };
+        }
+      }
+    );
 }
 
 function setSessionStorage(result: iAuthenticationResponse) {
