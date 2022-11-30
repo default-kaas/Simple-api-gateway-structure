@@ -42,7 +42,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/api/authenticate", async (HttpContext httpContext, [FromBody] AuthenticationRequest authenticationRequest, AuthServiceInterface authService) => {
+app.MapPost("/api/authenticate", async ([FromBody] AuthenticationRequest authenticationRequest, AuthServiceInterface authService) => {
     var result = await authService.Authenticate(authenticationRequest);
     if (result.HasError)
          return Results.Unauthorized();
