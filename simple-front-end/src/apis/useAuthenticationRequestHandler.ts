@@ -22,7 +22,7 @@ async function additionalLoadingTime(): Promise<void> {
     await new Promise((resolve) => setTimeout(resolve, 750));
 }
 
-export async function authenticationRequest(
+async function authenticationRequest(
   userCredentials: iUserCredentials
 ): Promise<iAuthenticationResponse> {
   const result = await postRequest<{ jwt: string | null }, iUserCredentials>(
