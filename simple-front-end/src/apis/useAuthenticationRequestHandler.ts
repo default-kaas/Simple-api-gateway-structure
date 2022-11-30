@@ -16,7 +16,7 @@ export async function authenticationRequestCall(
   permissionStore.ResetLoading();
 }
 
-/** This added to show the loading animation */
+/** This is added to show the loading animation */
 async function additionalLoadingTime(): Promise<void> {
   if (import.meta.env.VITE_SHOWCASE_LOADING_ANIMATION ?? false)
     await new Promise((resolve) => setTimeout(resolve, 750));
