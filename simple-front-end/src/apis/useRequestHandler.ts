@@ -1,50 +1,15 @@
 import { PermissionStatusEnumerator } from "@/enumerators/permissionStatusEnumerator";
-import axios from "axios";
-import { usePermissionStore } from "@/stores/usePermissionStore";
+import axios, {
+  type AxiosResponse,
+  type AxiosResponseHeaders,
+  type RawAxiosResponseHeaders,
+} from "axios";
 import type iUserCredentials from "@/interfaces/iUserCredentials";
 import type iAuthenticationResponse from "@/interfaces/iAuthenticationResponse";
+import type iRequestResult from "@/interfaces/iRequestResult";
+import { getSessionStorageJWT } from "@/webStorage/useSesstionStorage";
 
-export async function authenticationRequestCall(
-  userCredentials: iUserCredentials
-): Promise<void> {
-  const permissionStore = usePermissionStore();
-  permissionStore.SetLoading();
-  await additionalLoadingTime();
-  setSessionStorage(await authenticationRequest(userCredentials));
-  permissionStore.ResetLoading();
-}
-
-export async function permissionRequest(
-  url: string
-): Promise<PermissionStatusEnumerator> {
-  const result = await axios
-    .get(import.meta.env.VITE_BASE_URL + url, {
-      headers: { Authorization: "Bearer " + sessionStorage.getItem("jwt") },
-    })
-    .then((response) => {
-      return response.status;
-    })
-    .catch((error: { response: { status: number } }) => {
-      return error.response.status;
-    });
-  return permissionStatus(result);
-}
-
-function permissionStatus(status: number): PermissionStatusEnumerator {
-  if ((<any>Object).values(PermissionStatusEnumerator).includes(status)) {
-    return status;
-  } else {
-    return PermissionStatusEnumerator.unknown;
-  }
-}
-
-/** This added to show the loading animation */
-async function additionalLoadingTime(): Promise<void> {
-  if (import.meta.env.VITE_SHOWCASE_LOADING_ANIMATION ?? false)
-    await new Promise((resolve) => setTimeout(resolve, 750));
-}
-
-async function authenticationRequest(
+export async function authenticationRequest(
   userCredentials: iUserCredentials
 ): Promise<iAuthenticationResponse> {
   return await axios
@@ -69,10 +34,50 @@ async function authenticationRequest(
     );
 }
 
-function setSessionStorage(result: iAuthenticationResponse) {
-  if (result.status == 200) {
-    sessionStorage.setItem("jwt", result.jwt ?? "");
+export async function getRequest<T>(url: string): Promise<iRequestResult<T>> {
+  return await axios
+    .get(import.meta.env.VITE_BASE_URL + url, {
+      headers: { Authorization: "Bearer " + getSessionStorageJWT() },
+    })
+    .then(requestResponseHandling<T>)
+    .catch(requestErrorHandling<T>);
+}
+
+function requestResponseHandling<T>(
+  response: AxiosResponse<any, any>
+): iRequestResult<T> {
+  return {
+    statusCode: response.status,
+    statusText: response.statusText,
+    headers: response.headers,
+    result: response.data,
+  };
+}
+
+function requestErrorHandling<T>(error: {
+  response: {
+    status: number;
+    statusText: string;
+    headers: RawAxiosResponseHeaders | AxiosResponseHeaders;
+  } | null;
+  request: {
+    status: number;
+    statusText: string;
+  };
+}): iRequestResult<T> {
+  if (error.response == null) {
+    return {
+      statusCode: error.request.status,
+      statusText: error.request.statusText,
+      headers: null,
+      result: null,
+    };
   } else {
-    sessionStorage.removeItem("jwt");
+    return {
+      statusCode: error.response.status,
+      statusText: error.response.statusText,
+      headers: error.response.headers,
+      result: null,
+    };
   }
 }

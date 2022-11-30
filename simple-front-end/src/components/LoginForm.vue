@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { authenticationRequestCall } from "@/apis/useRequestHandler";
+import { authenticationRequestCall } from "@/apis/useAuthenticationRequestHandler";
 import { ref } from "vue";
 const userName = ref("");
 const password = ref("");

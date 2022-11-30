@@ -2,7 +2,7 @@
 import { PermissionStatusEnumerator } from "@/enumerators/permissionStatusEnumerator";
 import { ref } from "vue";
 import { usePermissionStore } from "@/stores/usePermissionStore";
-import { permissionRequest } from "@/apis/useRequestHandler";
+import { permissionRequest } from "@/apis/usePermissionRequestHandler";
 const props = defineProps({
   permissionStatusName: {
     type: String,
