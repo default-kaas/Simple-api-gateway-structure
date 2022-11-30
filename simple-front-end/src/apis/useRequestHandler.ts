@@ -1,37 +1,21 @@
-import { PermissionStatusEnumerator } from "@/enumerators/permissionStatusEnumerator";
 import axios, {
   type AxiosResponse,
   type AxiosResponseHeaders,
   type RawAxiosResponseHeaders,
 } from "axios";
-import type iUserCredentials from "@/interfaces/iUserCredentials";
-import type iAuthenticationResponse from "@/interfaces/iAuthenticationResponse";
 import type iRequestResult from "@/interfaces/iRequestResult";
 import { getSessionStorageJWT } from "@/webStorage/useSesstionStorage";
 
-export async function authenticationRequest(
-  userCredentials: iUserCredentials
-): Promise<iAuthenticationResponse> {
+export async function postRequest<T, T2>(
+  url: string,
+  postValues: T2
+): Promise<iRequestResult<T>> {
   return await axios
-    .post<iAuthenticationResponse>(
-      import.meta.env.VITE_BASE_URL + "/api/authenticate",
-      userCredentials
-    )
-    .then((response) => {
-      return { jwt: response.data.jwt, status: response.status };
+    .post(import.meta.env.VITE_BASE_URL + url, postValues, {
+      headers: { Authorization: "Bearer " + getSessionStorageJWT() },
     })
-    .catch(
-      (error: {
-        response: { status: number } | null;
-        request: { status: number };
-      }) => {
-        if (error.response == null) {
-          return { jwt: null, status: PermissionStatusEnumerator.unknown };
-        } else {
-          return { jwt: null, status: error.response.status };
-        }
-      }
-    );
+    .then(requestResponseHandling<T>)
+    .catch(requestErrorHandling<T>);
 }
 
 export async function getRequest<T>(url: string): Promise<iRequestResult<T>> {
