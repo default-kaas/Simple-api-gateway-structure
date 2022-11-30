@@ -50,15 +50,15 @@ app.MapPost("/api/authenticate", async (HttpContext httpContext, [FromBody] Auth
 });
 
 app.MapGet("/api/permission-route1", () => {
-    return "You have permission for route 1";
+    return Results.Ok("You have permission for route 1");
 });
 
 app.MapGet("/api/permission-route2", () => {
-    return "You have permission for route 2";
+    return Results.Ok("You have permission for route 2");
 });
 
 app.MapGet("/api/permission-route3", () => {
-    return "You have permission for route 3";
+    return Results.Ok("You have permission for route 3");
 });
 
 app.Run();
