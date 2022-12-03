@@ -12,9 +12,11 @@ declare module '@vue/runtime-core' {
     LegendPermissionStatus: typeof import('./src/components/LegendPermissionStatus.vue')['default']
     LoadingCircle: typeof import('./src/components/LoadingCircle.vue')['default']
     LoginForm: typeof import('./src/components/LoginForm.vue')['default']
+    MessageWrapper: typeof import('./src/components/modals/MessageWrapper.vue')['default']
     PermissionIconWrapper: typeof import('./src/components/utilities/PermissionIconWrapper.vue')['default']
     PermissionStatus: typeof import('./src/components/PermissionStatus.vue')['default']
     PermissionStatusIcon: typeof import('./src/components/utilities/PermissionStatusIcon.vue')['default']
     PermissionStatusLegendRow: typeof import('./src/components/PermissionStatusLegendRow.vue')['default']
+    PopupMessage: typeof import('./src/components/modals/PopupMessage.vue')['default']
   }
 }
