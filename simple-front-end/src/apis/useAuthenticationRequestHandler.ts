@@ -1,5 +1,5 @@
 import type iAuthenticationResponse from "@/interfaces/iAuthenticationResponse";
-import type iUserCredentials from "@/interfaces/iUserCredentials";
+import type { iUserCredentials } from "@/interfaces/iUserCredentials";
 import { usePermissionStore } from "@/stores/usePermissionStore";
 import { setSessionStorageAuthenticationResponse } from "@/webStorage/useSesstionStorage";
 import { postRequest } from "./useRequestHandler";
